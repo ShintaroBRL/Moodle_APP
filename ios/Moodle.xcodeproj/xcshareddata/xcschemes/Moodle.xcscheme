@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-               BuildableName = "Moodle.app"
-               BlueprintName = "Moodle"
-               ReferencedContainer = "container:Moodle.xcodeproj">
+               BuildableName = "serity.app"
+               BlueprintName = "serity"
+               ReferencedContainer = "container:serity.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "00E356ED1AD99517003FC87E"
-               BuildableName = "MoodleTests.xctest"
-               BlueprintName = "MoodleTests"
-               ReferencedContainer = "container:Moodle.xcodeproj">
+               BuildableName = "serityTests.xctest"
+               BlueprintName = "serityTests"
+               ReferencedContainer = "container:serity.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -55,9 +55,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "Moodle.app"
-            BlueprintName = "Moodle"
-            ReferencedContainer = "container:Moodle.xcodeproj">
+            BuildableName = "serity.app"
+            BlueprintName = "serity"
+            ReferencedContainer = "container:serity.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -72,9 +72,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "Moodle.app"
-            BlueprintName = "Moodle"
-            ReferencedContainer = "container:Moodle.xcodeproj">
+            BuildableName = "serity.app"
+            BlueprintName = "serity"
+            ReferencedContainer = "container:serity.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

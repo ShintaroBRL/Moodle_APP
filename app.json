@@ -1,9 +1,9 @@
 {
-  "name": "App-Base",
-  "displayName": "App-Base",
+  "name": "serity",
+  "displayName": "serity",
   "expo": {
-    "name": "App-Base",
-    "slug": "App-Base",
+    "name": "serity",
+    "slug": "serity",
     "version": "1.0.0",
     "assetBundlePatterns": [
       "**/*"

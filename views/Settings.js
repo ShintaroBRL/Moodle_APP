@@ -7,7 +7,7 @@ import { styles } from '../styles/styles'
 import { createStackNavigator } from '@react-navigation/stack';
 import Icon from 'react-native-vector-icons/Ionicons';
 
-const index = () => {
+ const Settings = () => {
 
   return (
     <View style={styles.container}>
@@ -18,7 +18,7 @@ const index = () => {
 
 const Stack = createStackNavigator();
 
-export default IndexStackScreen = ({navigation}) => {
+export default SettingsStackScreen = ({navigation}) => {
   return(
     <Stack.Navigator screenOptions={{
       headerStyle: {
@@ -29,8 +29,8 @@ export default IndexStackScreen = ({navigation}) => {
         fontWeight: 'bold',
       }
     }}>
-      <Stack.Screen name="Home" component={index} options={{
-        title: 'Home',
+      <Stack.Screen name="Settings" component={Settings} options={{
+        title: 'Settings',
         headerLeft: () => (
           <Icon.Button name="ios-menu" size={25} iconStyle={{marginLeft:10}}
           backgroundColor='#f98012' onPress={() => {navigation.openDrawer()}}

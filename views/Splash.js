@@ -10,8 +10,7 @@ export default class Splash extends Component {
     render(){
         return (
             <View style={{flex:1,backgroundColor:'#fff'}}>
-                <LottieView source={require('../assets/splash.json')} autoPlay loop={false}
-                onAnimationFinish={() => {this.props.navigation.replace('SignIn')}}/>
+                <LottieView source={require('../assets/splash.json')} autoPlay loop={true}/>
             </View>
         )
     }

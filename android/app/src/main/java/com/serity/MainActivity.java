@@ -1,4 +1,4 @@
-package com.moodle;
+package com.serity;
 
 import android.os.Bundle;
 

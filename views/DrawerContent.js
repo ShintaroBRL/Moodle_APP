@@ -1,5 +1,5 @@
-import React from 'react';
-import { View, StyleSheet } from 'react-native';
+import React, { useEffect } from 'react';
+import { View, StyleSheet, Alert, Text } from 'react-native';
 
 import { 
     Avatar, Title, Caption, Paragraph, Drawer
@@ -11,8 +11,58 @@ import {
 } from '@react-navigation/drawer'
 
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import AsyncStorage from '@react-native-community/async-storage';
+
+import { AuthContext } from '../components/context';
 
 export function DrawerContent(props){
+
+    const { AuthSignOut } = React.useContext(AuthContext);
+    const [userName, setUserName] = React.useState("");
+    const [userLevel, setUserLevel] = React.useState(1);
+
+    useEffect(()=>{
+        try {
+            AsyncStorage.getItem('userData').then((data) => {
+                setUserName(JSON.parse(data).name);
+                setUserLevel(JSON.parse(data).type);
+            }).catch(error => {
+                console.log("Error");
+                console.log(error);
+            })
+        } catch (error) {
+            Alert.alert("Error while getting name!");
+        }
+    }, [])
+
+    
+    let adminSection = (userLevel == -1)? 
+        <Drawer.Section title="Administração" style={styles.drawerSection}>
+            <DrawerItem 
+                icon={({color, size}) => (
+                    <Icon 
+                    name="google-classroom"
+                    color={color}
+                    size={size}
+                    />
+                )}
+                label="Classes"
+                onPress={() => {}}
+            />
+            <DrawerItem 
+                icon={({color, size}) => (
+                    <Icon 
+                    name="account-circle-outline"
+                    color={color}
+                    size={size}
+                    />
+                )}
+                label="Usuarios"
+                onPress={() => {}}
+            />
+        </Drawer.Section>
+      : null;
+
     return(
         <View style={{flex:1}}>
             <DrawerContentScrollView {...props}>
@@ -27,18 +77,8 @@ export function DrawerContent(props){
                             />
                         </View>
                         <View style={{marginLeft:15, flexDirection:'column'}}>
-                            <Title style={styles.title}>John Doe</Title>
-                            <Caption style={styles.caption}>@j_doe</Caption>
-                        </View>
-                    </View>
-                    <View style={styles.row}>
-                        <View style={styles.section}>
-                            <Paragraph style={[styles.paragraph, styles.caption]}>80</Paragraph>
-                            <Caption style={styles.caption}>Following</Caption>
-                        </View>
-                        <View style={styles.section}>
-                            <Paragraph style={[styles.paragraph, styles.caption]}>100</Paragraph>
-                            <Caption style={styles.caption}>Followers</Caption>
+                            <Title style={styles.title}>{userName}</Title>
+                            <Caption style={styles.caption}>@{userName}</Caption>
                         </View>
                     </View>
                 </View>
@@ -52,7 +92,7 @@ export function DrawerContent(props){
                             />
                         )}
                         label="Home"
-                        onPress={() => {}}
+                        onPress={() => {props.navigation.navigate('Home')}}
                     />
                     <DrawerItem 
                         icon={({color, size}) => (
@@ -63,7 +103,7 @@ export function DrawerContent(props){
                             />
                         )}
                         label="Conteudos"
-                        onPress={() => {}}
+                        onPress={() => {props.navigation.navigate('Conteudos')}}
                     />
                     <DrawerItem 
                         icon={({color, size}) => (
@@ -74,7 +114,7 @@ export function DrawerContent(props){
                             />
                         )}
                         label="Trabalhos"
-                        onPress={() => {}}
+                        onPress={() => {props.navigation.navigate('Trabalhos')}}
                     />
                     <DrawerItem 
                         icon={({color, size}) => (
@@ -85,7 +125,7 @@ export function DrawerContent(props){
                             />
                         )}
                         label="Avaliações"
-                        onPress={() => {}}
+                        onPress={() => {props.navigation.navigate('Avaliacoes')}}
                     />
                 </Drawer.Section>
 
@@ -99,7 +139,7 @@ export function DrawerContent(props){
                             />
                         )}
                         label="Settings"
-                        onPress={() => {}}
+                        onPress={() => {props.navigation.navigate('Settings')}}
                     />
                     <DrawerItem 
                         icon={({color, size}) => (
@@ -114,6 +154,8 @@ export function DrawerContent(props){
                     />
                 </Drawer.Section>
 
+                {adminSection}
+                
             </DrawerContentScrollView>
 
             <Drawer.Section style={styles.bottomDrawerSection}>
@@ -126,7 +168,7 @@ export function DrawerContent(props){
                         />
                     )}
                     label="Sign Out"
-                    onPress={()=>{}}
+                    onPress={()=>{AuthSignOut()}}
                 />
             </Drawer.Section>
 

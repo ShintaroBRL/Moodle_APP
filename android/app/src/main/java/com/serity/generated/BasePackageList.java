@@ -1,4 +1,4 @@
-package com.moodle.generated;
+package com.serity.generated;
 
 import java.util.Arrays;
 import java.util.List;

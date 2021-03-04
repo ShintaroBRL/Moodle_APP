@@ -132,7 +132,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.moodle"
+        applicationId "com.serity"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1

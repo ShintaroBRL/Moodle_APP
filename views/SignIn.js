@@ -15,6 +15,8 @@ import Feather from 'react-native-vector-icons/Feather';
 
 import { useTheme } from 'react-native-paper';
 
+import { AuthContext } from '../components/context';
+
 const SignInScreen = ({navigation}) => {
 
     const [data, setData] = React.useState({
@@ -27,6 +29,8 @@ const SignInScreen = ({navigation}) => {
     });
 
     const { colors } = useTheme();
+
+    const { AuthSignIn } = React.useContext(AuthContext);
 
     const textInputChange = (val) => {
         if( val.trim().length >= 4 ) {
@@ -73,6 +77,7 @@ const SignInScreen = ({navigation}) => {
         if( val.trim().length >= 4 ) {
             setData({
                 ...data,
+
                 isValidUser: true
             });
         } else {
@@ -83,12 +88,17 @@ const SignInScreen = ({navigation}) => {
         }
     }
 
-    const loginHandle = (userName, password) => {
+    const loginHandle = () => {
+        if(data.username !== '' && data.password !== ''){
+            AuthSignIn(data.username,data.password);
+        }else{
+            Alert.alert("Usuario ou senha invalidos!");
+        }
     }
 
     return (
       <View style={styles.container}>
-          <StatusBar backgroundColor='#009387' barStyle="light-content"/>
+          <StatusBar backgroundColor='#f98012' barStyle="light-content"/>
         <View style={styles.header}>
             <Text style={styles.text_header}>Bem-Vindo!</Text>
         </View>
@@ -114,7 +124,7 @@ const SignInScreen = ({navigation}) => {
                         color: colors.text
                     }]}
                     autoCapitalize="none"
-                    onChangeText={(val) => textInputChange(val)}
+                    onChangeText={(text) => textInputChange(text)}
                     onEndEditing={(e)=>handleValidUser(e.nativeEvent.text)}
                 />
                 {data.check_textInputChange ? 
@@ -134,7 +144,6 @@ const SignInScreen = ({navigation}) => {
             <Text style={styles.errorMsg}>Usuario precisa ser maior que 4</Text>
             </Animatable.View>
             }
-            
 
             <Text style={[styles.text_footer, {
                 color: colors.text,
@@ -182,32 +191,32 @@ const SignInScreen = ({navigation}) => {
             
 
             <TouchableOpacity>
-                <Text style={{color: '#009387', marginTop:15}}>Esqueci a senha?</Text>
+                <Text style={{color: '#f98012', marginTop:15}}>Esqueci a senha?</Text>
             </TouchableOpacity>
             <View style={styles.button}>
                 <TouchableOpacity
-                    onPress={() => navigation.replace('Main')}
+                    onPress={() => {loginHandle()}}
                     style={[styles.signIn, {
-                        borderColor: '#009387',
+                        borderColor: '#f98012',
                         borderWidth: 1,
                         marginTop: 15
                     }]}
                 >
                     <Text style={[styles.textSign, {
-                        color: '#009387'
+                        color: '#f98012'
                     }]}>Entrar</Text>
                 </TouchableOpacity>
 
                 <TouchableOpacity
                     onPress={() => navigation.navigate('SignUp')}
                     style={[styles.signIn, {
-                        borderColor: '#009387',
+                        borderColor: '#f98012',
                         borderWidth: 1,
                         marginTop: 15
                     }]}
                 >
                     <Text style={[styles.textSign, {
-                        color: '#009387'
+                        color: '#f98012'
                     }]}>Registrar-se</Text>
                 </TouchableOpacity>
             </View>
@@ -221,7 +230,7 @@ export default SignInScreen;
 const styles = StyleSheet.create({
     container: {
       flex: 1, 
-      backgroundColor: '#009387'
+      backgroundColor: '#f98012'
     },
     header: {
         flex: 1,

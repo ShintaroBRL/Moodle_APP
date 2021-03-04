@@ -14,6 +14,8 @@ import * as Animatable from 'react-native-animatable';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Feather from 'react-native-vector-icons/Feather';
 
+import { AuthContext } from '../components/context';
+
 const SignInScreen = ({navigation}) => {
 
     const [data, setData] = React.useState({
@@ -24,6 +26,8 @@ const SignInScreen = ({navigation}) => {
         secureTextEntry: true,
         confirm_secureTextEntry: true,
     });
+
+    const { AuthSignUp } = React.useContext(AuthContext);
 
     const textInputChange = (val) => {
         if( val.length !== 0 ) {
@@ -69,9 +73,21 @@ const SignInScreen = ({navigation}) => {
         });
     }
 
+    const handleSignUp = () => {
+        if(data.password === data.confirm_password){
+            if(data.username !== '' && data.password !== ''){
+                AuthSignUp(data.username, data.password);
+            }else{
+                Alert.alert("Usuario ou senha invalidos!");
+            }
+        }else{
+            Alert.alert("Senhas não conferem!");
+        }
+    }
+
     return (
       <View style={styles.container}>
-          <StatusBar backgroundColor='#009387' barStyle="light-content"/>
+          <StatusBar backgroundColor='#f98012' barStyle="light-content"/>
         <View style={styles.header}>
             <Text style={styles.text_header}>Registrar-se!</Text>
         </View>
@@ -183,27 +199,27 @@ const SignInScreen = ({navigation}) => {
             </View>
             <View style={styles.button}>
                 <TouchableOpacity
-                    onPress={() => Alert.alert("Cadastrado")}
+                    onPress={() => {handleSignUp()}}
                     style={[styles.signIn, {
-                        borderColor: '#009387',
+                        borderColor: '#f98012',
                         borderWidth: 1,
                     }]}
                 >
                     <Text style={[styles.textSign, {
-                        color: '#009387'
+                        color: '#f98012'
                     }]}>Cadastrar</Text>
                 </TouchableOpacity>
 
                 <TouchableOpacity
                     onPress={() => navigation.goBack()}
                     style={[styles.signIn, {
-                        borderColor: '#009387',
+                        borderColor: '#f98012',
                         borderWidth: 1,
                         marginTop: 15
                     }]}
                 >
                     <Text style={[styles.textSign, {
-                        color: '#009387'
+                        color: '#f98012'
                     }]}>Login</Text>
                 </TouchableOpacity>
             </View>
@@ -218,7 +234,7 @@ export default SignInScreen;
 const styles = StyleSheet.create({
     container: {
       flex: 1, 
-      backgroundColor: '#009387'
+      backgroundColor: '#f98012'
     },
     header: {
         flex: 1,

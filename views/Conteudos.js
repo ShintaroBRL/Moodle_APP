@@ -1,13 +1,13 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { Text, View } from 'react-native';
+import { View } from 'react-native';
 
 import { styles } from '../styles/styles'
 
 import { createStackNavigator } from '@react-navigation/stack';
 import Icon from 'react-native-vector-icons/Ionicons';
 
-const index = () => {
+ const Conteudos = () => {
 
   return (
     <View style={styles.container}>
@@ -18,7 +18,7 @@ const index = () => {
 
 const Stack = createStackNavigator();
 
-export default IndexStackScreen = ({navigation}) => {
+export default ConteudosStackScreen = ({navigation}) => {
   return(
     <Stack.Navigator screenOptions={{
       headerStyle: {
@@ -29,8 +29,8 @@ export default IndexStackScreen = ({navigation}) => {
         fontWeight: 'bold',
       }
     }}>
-      <Stack.Screen name="Home" component={index} options={{
-        title: 'Home',
+      <Stack.Screen name="Conteudos" component={Conteudos} options={{
+        title: 'Conteudos',
         headerLeft: () => (
           <Icon.Button name="ios-menu" size={25} iconStyle={{marginLeft:10}}
           backgroundColor='#f98012' onPress={() => {navigation.openDrawer()}}

@@ -1,4 +1,4 @@
-rootProject.name = 'Moodle'
+rootProject.name = 'serity'
 
 apply from: '../node_modules/react-native-unimodules/gradle.groovy'
 includeUnimodulesProjects()
